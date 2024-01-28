@@ -20,7 +20,7 @@ export class EventbridgeToAppsyncStack extends cdk.Stack {
 			appsyncEndpointArn: cfnAPI.attrGraphQlEndpointArn,
 			graphQlOperation: publishMsgFromEB,
 		})
-		//arn:aws:appsync:::apis/mlaqeza42vdabbz6rcotredgoa
+		//arn:aws:appsync:::apis/apiId
 		new cdk.CfnOutput(this, 'appsync-api-url', {
 			value: api.graphqlUrl,
 		})
@@ -28,7 +28,7 @@ export class EventbridgeToAppsyncStack extends cdk.Stack {
 			value: api.arn,
 		})
 
-		//arn:aws:appsync:::endpoints/graphql-api/yzlm7hoyyvgihftggzljxgtmeq
+		//arn:aws:appsync:::endpoints/graphql-api/graphQLUrlId
 		new cdk.CfnOutput(this, 'cfn-graphql-arn', {
 			value: cfnAPI.attrGraphQlEndpointArn,
 		})
