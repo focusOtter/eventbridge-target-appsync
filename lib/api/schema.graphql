@@ -1,0 +1,8 @@
+type Query {
+	noop: String
+}
+
+type Mutation {
+	# I want eventbridge to call this and invoke a client
+	publishMsgFromEB(msg: String!): String! @aws_iam
+}
