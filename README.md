@@ -1,5 +1,8 @@
 # Amazon EventBridge to AWS AppSync
 
+![image](https://github.com/focusOtter/eventbridge-target-appsync/assets/5106417/fe91e2c3-aa92-4245-ae7e-6bbb5e32260a)
+
+
 ![appsnc as eventbridge target](./arch-diagram.drawio.png)
 
 On January 11, 2024, [Amazon EventBridge added AWS AppSync as a direct target](https://aws.amazon.com/about-aws/whats-new/2024/01/amazon-eventbridge-appsync-target-buses/). While the two could be tied together with an AWS Lambda function or as a direct API via an API Key, this solution provides a tighter and more scalable way of orchestrating data across applications.
@@ -51,3 +54,9 @@ type Mutation {
 ```
 
 That means in the AWS Console, we can send a `msg` string in the `event.detail` section of our event, and check CloudWatch to verify the API was been triggered and the EventBridge message has been successfully passed.
+
+<img width="1507" alt="image" src="https://github.com/focusOtter/eventbridge-target-appsync/assets/5106417/a20356a9-3e0c-42b1-8070-54c0cbeec267">
+
+<img width="1511" alt="image" src="https://github.com/focusOtter/eventbridge-target-appsync/assets/5106417/3f9c2453-c7d0-47ab-a024-77180848e10c">
+
+
