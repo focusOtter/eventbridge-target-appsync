@@ -38,6 +38,7 @@ export const createEventBridge = (
 			}),
 		},
 	})
+
 	const mycfnRule = new events.CfnRule(scope, 'cfnRule', {
 		eventBusName: bus.eventBusName,
 		name: 'mycfnRule',
