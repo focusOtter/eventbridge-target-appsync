@@ -5,3 +5,9 @@ type Query {
 type Mutation {
 	publishMsgFromEB(msg: String!): String! @aws_iam
 }
+
+type Subscription {
+	onPublishMsgFromEb: String
+		@aws_cognito_user_pools
+		@aws_subscribe(mutations: ["publishMsgFromEB"])
+}
