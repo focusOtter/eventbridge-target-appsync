@@ -14,7 +14,7 @@ export class EventbridgeToAppsyncStack extends cdk.Stack {
 
 		const auth = createCognitoAuth(this, { appName })
 
-		const api = createAppSyncAPI(this, { appName })
+		const api = createAppSyncAPI(this, { appName, userpool: auth.userPool })
 
 		const cfnAPI = api.node.defaultChild as CfnGraphQLApi
 

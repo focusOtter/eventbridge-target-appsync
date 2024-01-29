@@ -8,9 +8,11 @@ import {
 	FunctionRuntime,
 	Code,
 } from 'aws-cdk-lib/aws-appsync'
+import { UserPool } from 'aws-cdk-lib/aws-cognito'
 
 type AppSyncAPIProps = {
 	appName: string
+	userpool: UserPool
 }
 
 export const createAppSyncAPI = (scope: Construct, props: AppSyncAPIProps) => {
@@ -21,6 +23,12 @@ export const createAppSyncAPI = (scope: Construct, props: AppSyncAPIProps) => {
 			defaultAuthorization: {
 				authorizationType: AuthorizationType.IAM,
 			},
+			additionalAuthorizationModes: [
+				{
+					authorizationType: AuthorizationType.USER_POOL,
+					userPoolConfig: { userPool: props.userpool },
+				},
+			],
 		},
 		logConfig: {
 			fieldLogLevel: FieldLogLevel.ALL,
