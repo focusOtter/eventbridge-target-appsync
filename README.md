@@ -2,7 +2,6 @@
 
 ![image](https://github.com/focusOtter/eventbridge-target-appsync/assets/5106417/fe91e2c3-aa92-4245-ae7e-6bbb5e32260a)
 
-
 ![appsnc as eventbridge target](./arch-diagram.drawio.png)
 
 On January 11, 2024, [Amazon EventBridge added AWS AppSync as a direct target](https://aws.amazon.com/about-aws/whats-new/2024/01/amazon-eventbridge-appsync-target-buses/). While the two could be tied together with an AWS Lambda function or as a direct API via an API Key, this solution provides a tighter and more scalable way of orchestrating data across applications.
@@ -59,4 +58,25 @@ That means in the AWS Console, we can send a `msg` string in the `event.detail` 
 
 <img width="1511" alt="image" src="https://github.com/focusOtter/eventbridge-target-appsync/assets/5106417/3f9c2453-c7d0-47ab-a024-77180848e10c">
 
+## Subscribing to Real-time data
 
+AWS AppSync comes with real-time data support out-of-the-box through the use of `Subscriptions`.
+Subscriptions subscribe to `Mutations`:
+
+```graphql
+type Subscription {
+	onPublishMsgFromEb: String
+		@aws_cognito_user_pools
+		@aws_subscribe(mutations: ["publishMsgFromEB"])
+}
+```
+
+The `@aws_cognito_user_pools` directive means users have to be signed in with Cognito to subscribe to this operation. Fortunately, this application comes with Cognito setup and integrated with our AppSync API.
+
+To test this out, create a cognito user in the AWS Console and make sure to send an email to the user with a generated password.
+
+From there, open up a second browser tab and signin with your username and temporary user password. The AppSync console will prompt for a new password.
+
+From there, ensure you are subscribing to data by selecting the `onPublishMsgFromEb` subscription.
+
+Lastly, in a different browser tab, send an event to EventBridge. The message should show up on your second browser tab.
