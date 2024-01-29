@@ -16,3 +16,10 @@ export type NoopQueryVariables = {
 export type NoopQuery = {
   noop?: string | null,
 };
+
+export type OnPublishMsgFromEbSubscriptionVariables = {
+};
+
+export type OnPublishMsgFromEbSubscription = {
+  onPublishMsgFromEb?: string | null,
+};
